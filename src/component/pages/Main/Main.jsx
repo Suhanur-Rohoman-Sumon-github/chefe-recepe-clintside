@@ -4,7 +4,8 @@ import { Outlet } from 'react-router-dom';
 import Footer from '../home/Footer/Footer';
 import bg from '../../../../public/photo-1600891964599-f61ba0e24092.jfif'
 import Home from '../home/home/Home';
-import WhoWeAre from '../home/home/section/who-we-are-section/WhoWeAre';
+import WhoWeAre from '../section/who-we-are-section/WhoWeAre';
+import Chef from '../section/chefsection/Chef';
 
 const Main = () => {
     return (
@@ -32,6 +33,9 @@ const Main = () => {
             </section>
             <section className='mt-6 py-52 bg-gray-950 '>
                 <WhoWeAre />
+            </section>
+            <section className='mt-1  bg-gray-950 '>
+                <Chef />
             </section>
             <section>
                 <Footer />
