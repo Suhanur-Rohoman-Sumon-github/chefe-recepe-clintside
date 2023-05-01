@@ -6,6 +6,7 @@ import bg from '../../../../public/photo-1600891964599-f61ba0e24092.jfif'
 import Home from '../home/home/Home';
 import WhoWeAre from '../section/who-we-are-section/WhoWeAre';
 import Chef from '../section/chefsection/Chef';
+import Servises from '../section/servises/Servises';
 
 const Main = () => {
     return (
@@ -36,6 +37,9 @@ const Main = () => {
             </section>
             <section className='mt-1  bg-gray-950 '>
                 <Chef />
+            </section>
+            <section className='mt-1  bg-gray-950 '>
+                <Servises />
             </section>
             <section>
                 <Footer />
