@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../home/navbar/Navbar';
-import { Outlet } from 'react-router-dom';
 import Footer from '../home/Footer/Footer';
 import bg from '../../../../public/photo-1600891964599-f61ba0e24092.jfif'
 import Home from '../home/home/Home';
@@ -12,7 +11,7 @@ const Main = () => {
     return (
         <div >
             <section className='pb-40 ' style={{ position: "relative" }} >
-                <div className='blur-lg' style={{
+                <div className='blur-sm' style={{
                     backgroundImage: `url(${bg})`,
                     backgroundPosition: "center",
                     backgroundSize: "cover",
@@ -23,7 +22,7 @@ const Main = () => {
                     bottom: 0,
                     zIndex: -1,
                 }} />
-                <div  style={{
+                <div style={{
                     position: "relative",
                     zIndex: 1,
                 }}>

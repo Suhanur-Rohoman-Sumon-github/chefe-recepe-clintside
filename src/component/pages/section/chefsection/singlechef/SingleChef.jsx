@@ -1,10 +1,11 @@
 import React from 'react';
 import Rating from 'react-rating';
 import { FaBookmark, FaShareAlt, FaEye, FaStar, FaRegStar } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const SingleChef = ({ chef }) => {
     console.log(chef)
-    const { chefName, yearsOfExperience, numberOfRecipes, imageUrl, likes, rating } = chef
+    const { chefName, yearsOfExperience, numberOfRecipes, imageUrl, likes, rating,id } = chef
     return (
         <>
             <div className="card w-full shadow-lg shadow-teal-500 border border-spacing-4 border-teal-600 ">
@@ -32,7 +33,7 @@ const SingleChef = ({ chef }) => {
 
                             </div>
                         </div>
-                        <button className="btn btn-outline btn-success">vew recipis</button>
+                        <Link to={`/news/${id}`}> <button className="btn btn-outline btn-success">vew details </button></Link>
                     </div>
                 </div>
             </div>

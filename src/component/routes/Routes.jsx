@@ -4,6 +4,8 @@ import Main from '../pages/Main/Main';
 import Home from '../pages/home/home/Home';
 import Login from '../pages/login and sinup/Login/Login';
 import Sinup from '../pages/login and sinup/Sinup/Sinup';
+import Singlechefe from '../pages/singlechefe/Singlechefe';
+import SingleChief from '../pages/layouts/singkechef/SingleChief';
 
 const router = createBrowserRouter([{
     path: '/',
@@ -14,14 +16,29 @@ const router = createBrowserRouter([{
             element: <Home />
         },
         {
-            path:'/login',
-            element:<Login />
+            path: '/login',
+            element: <Login />
         },
         {
-            path:'/sinup',
-            element:<Sinup />
+            path: '/sinup',
+            element: <Sinup />
         }
-    ]
-}])
+
+    ],
+
+},
+{
+    path: 'news',
+    element: <SingleChief />,
+    children: [{
+        path: ':id',
+        element: <Singlechefe />,
+        loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`)
+    }]
+}
+
+
+
+])
 
 export default router
