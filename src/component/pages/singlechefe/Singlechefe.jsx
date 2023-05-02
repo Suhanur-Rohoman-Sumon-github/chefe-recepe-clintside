@@ -9,7 +9,7 @@ const Singlechefe = () => {
 
     return (
         <div className=''>
-           <section className='flex justify-center items-center py-28'>
+           <section className='md:flex md:justify-center md:items-center py-28'>
                 <div >
                 <h1 className=' text-teal-500 text-4xl'>{chefName}</h1>
                 <p className='text-white text-2xl mt-4'>{description}</p>
