@@ -8,6 +8,7 @@ import SingleChief from '../pages/layouts/singkechef/SingleChief';
 import Blog from '../pages/Blog/Blog';
 import Loginlayout from '../pages/layouts/loginlayouts/Loginlayout';
 import BlogLayout from '../pages/layouts/bloglayout/BlogLayout';
+import PrivateRout from './PrivetRout/PrivateRout';
 
 const router = createBrowserRouter([{
     path: '/',
@@ -18,7 +19,7 @@ const router = createBrowserRouter([{
     element: <SingleChief />,
     children: [{
         path: ':id',
-        element: <Singlechefe />,
+        element: <PrivateRout ><Singlechefe />,</PrivateRout>,
         loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`)
     }]
 },

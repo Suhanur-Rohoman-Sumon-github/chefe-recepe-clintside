@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provaider/AuthProvider';
 
 
 const Login = () => {
     const navigate = useNavigate()
     const { loginUser } = useContext(AuthContext)
-
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
 
     const handalelogin = (event) => {
         event.preventDefault()
@@ -16,7 +17,7 @@ const Login = () => {
         const password = form.password.value
         loginUser(email, password)
             .then((userCredential) => {
-                navigate('/')
+                navigate(from,{replace:true})
                .then(() => {
 
                 })
