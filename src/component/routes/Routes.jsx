@@ -6,6 +6,7 @@ import Login from '../pages/login and sinup/Login/Login';
 import Sinup from '../pages/login and sinup/Sinup/Sinup';
 import Singlechefe from '../pages/singlechefe/Singlechefe';
 import SingleChief from '../pages/layouts/singkechef/SingleChief';
+import Blog from '../pages/Blog/Blog';
 
 const router = createBrowserRouter([{
     path: '/',
@@ -22,8 +23,12 @@ const router = createBrowserRouter([{
         {
             path: '/sinup',
             element: <Sinup />
-        }
+        },
+        {
+            path: '/blog',
+            element:<Blog />
 
+        }
     ],
 
 },

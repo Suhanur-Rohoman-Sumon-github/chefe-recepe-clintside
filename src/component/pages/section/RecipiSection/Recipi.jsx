@@ -1,7 +1,7 @@
 import React from 'react';
 import SingleRecipt from './SingleRecipt';
 import Rating from 'react-rating';
-import { FaRegStar, FaStar,FaHeart,FaBookmark } from 'react-icons/fa';
+import { FaRegStar, FaStar,FaHeart,FaBookmark,FaThumbsUp } from 'react-icons/fa';
 
 const Recipi = ({ work }) => {
     const { image, chefName, ingrediant, howcook, rating, description, name, imageUrl, likes } = work
@@ -45,8 +45,9 @@ const Recipi = ({ work }) => {
                             />
                         </p>
                        </div>
-                       <div>
+                       <div className='flex items-center'>
                         <FaHeart className='font-bold text-white' />
+                        <p className='flex items-center text-teal-500 ml-4'><FaThumbsUp className='mr-1' />{likes}</p>
                        </div>
                     </div>
                 </div>
