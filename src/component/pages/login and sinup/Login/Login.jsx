@@ -9,7 +9,7 @@ const auth = getAuth(app)
 
 const Login = () => {
     const navigate = useNavigate()
-    const { loginUser,setError,setUser } = useContext(AuthContext)
+    const { loginUser,setError,error} = useContext(AuthContext)
     const location = useLocation()
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
@@ -85,14 +85,8 @@ const Login = () => {
         const password = form.password.value
         loginUser(email, password)
             .then((userCredential) => {
-                const user = userCredential.user
-                setUser(user)
                 navigate(from, { replace: true })
-                // .then((result) => {
-                //     user=result.user
-                // })
-
-
+                setError('')
             })
             .catch(error => {
                 console.error(error.message)
@@ -107,6 +101,7 @@ const Login = () => {
                 <form onSubmit={handalelogin} className='mx-auto'>
                     <input type="text" placeholder="Type here" required name='email' className="input  input-bordered input-accent w-full max-w-xs" /><br />
                     <input type={showPassword ? 'text' : 'password'} onChange={handlePasswordChange} required name='password' placeholder="Type here" className="input mt-6 input-bordered input-accent w-full max-w-xs" />
+                    <p className='text-red-500 '>{error}</p>
                     <div className='flex items-center mt-4'>
                         <input onClick={toggleShowPassword} type="checkbox"  name='confirm password' className="checkbox checkbox-success mr-4" />
                         <p className="label-text text-teal-500"><span >show password</span></p>

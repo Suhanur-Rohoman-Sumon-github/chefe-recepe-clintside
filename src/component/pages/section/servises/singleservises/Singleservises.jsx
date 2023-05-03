@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Singleservises = ({servis}) => {
-    console.log(servis)
     const {name,image,description} = servis;
     return (
         <>

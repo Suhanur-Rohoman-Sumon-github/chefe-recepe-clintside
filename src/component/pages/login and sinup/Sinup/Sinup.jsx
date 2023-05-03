@@ -4,7 +4,7 @@ import Footer from '../../home/Footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../../Provaider/AuthProvider';
-import { signInWithPopup,getAuth, GoogleAuthProvider, GithubAuthProvider, updateProfile } from 'firebase/auth';
+import { signInWithPopup, getAuth, GoogleAuthProvider, GithubAuthProvider, updateProfile } from 'firebase/auth';
 import app from '../../../../firebase/firebase.config';
 
 const auth = getAuth(app)
@@ -12,6 +12,7 @@ const auth = getAuth(app)
 const Sinup = () => {
     const { sinUpUser, error, setError } = useContext(AuthContext)
     const navigate = useNavigate()
+
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
     const [showPassword, setShowPassword] = useState(false);
@@ -19,29 +20,40 @@ const Sinup = () => {
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-      };
+    };
 
-      const toggleShowPassword = () => {
+    const toggleShowPassword = () => {
         setShowPassword(!showPassword);
-      };
+    };
     const handleSinup = (event) => {
-        
+
         event.preventDefault()
         const form = event.target
+        const password = form.password.value
+        const confirmPassword = form.confirmPassword.value
+        if (password !== confirmPassword) {
+            setError("Invalid Confirm Password");
+            return;
+        }
+        if (password < 8) {
+            setError("password will be  minimum 8 character");
+            return;
+        }
+        if (!/(?=.*[^\a-zA-Z])/.test(password)) {
+            setError("password must me have on spacial character");
+            return;
+        }
+
         const name = form.name.value
         const imgUrl = form.imgUrl.value
         const email = form.email.value
-        const password = form.password.value
-        const confirmPassword = form.confirmPassword.value
-        
         sinUpUser(email, password)
             .then((userCredential) => {
-                const user = userCredential.user
                 updateProfile(auth.currentUser, {
                     displayName: name, photoURL: imgUrl
                 }).then(() => {
                     navigate('/')
-                    // ...
+                    setError('')
                 }).catch((error) => {
                     console.error(error.message)
                     const errorMessage = error.message;

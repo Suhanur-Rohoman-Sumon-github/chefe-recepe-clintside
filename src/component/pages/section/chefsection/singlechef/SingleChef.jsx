@@ -4,7 +4,6 @@ import { FaBookmark, FaShareAlt, FaEye, FaStar, FaRegStar } from "react-icons/fa
 import { Link } from 'react-router-dom';
 
 const SingleChef = ({ chef }) => {
-    console.log(chef)
     const { chefName, yearsOfExperience, numberOfRecipes, imageUrl, likes, rating, id } = chef
     return (
         <>

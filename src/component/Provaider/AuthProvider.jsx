@@ -15,9 +15,6 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({})
     const [loading,setLoding] = useState(true)
    
- console.log(user)
-    
-
     const logout = () => {
         setLoding(true)
         return signOut(auth)
