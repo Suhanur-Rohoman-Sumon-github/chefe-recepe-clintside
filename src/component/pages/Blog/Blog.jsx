@@ -9,7 +9,7 @@ const Blog = () => {
 
 
   return (
-    <div className='text-white'>
+    <div className=''>
        <Html />
       </div>
   );

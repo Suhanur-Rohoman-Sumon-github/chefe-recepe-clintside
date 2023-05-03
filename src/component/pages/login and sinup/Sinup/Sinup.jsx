@@ -10,7 +10,7 @@ import app from '../../../../firebase/firebase.config';
 const auth = getAuth(app)
 
 const Sinup = () => {
-    const { sinUpUser, setPhotoUrl, setName, error, setError, setUser } = useContext(AuthContext)
+    const { sinUpUser, error, setError } = useContext(AuthContext)
     const navigate = useNavigate()
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
@@ -33,16 +33,14 @@ const Sinup = () => {
         const email = form.email.value
         const password = form.password.value
         const confirmPassword = form.confirmPassword.value
-        if (confirmPassword === !password) {
-            return setError('vai pass mache kore na ')
-        }
+        
         sinUpUser(email, password)
             .then((userCredential) => {
-                navigate('/')
+                const user = userCredential.user
                 updateProfile(auth.currentUser, {
-                    displayName: displayName, photoURL: photoURL
+                    displayName: name, photoURL: imgUrl
                 }).then(() => {
-                    // Profile updated!
+                    navigate('/')
                     // ...
                 }).catch((error) => {
                     console.error(error.message)
@@ -51,8 +49,6 @@ const Sinup = () => {
                 });
 
             });
-        setName(name)
-        setPhotoUrl(imgUrl)
     }
     const handleGooglesinin = () => {
         signInWithPopup(auth, googleProvider)
@@ -122,7 +118,7 @@ const Sinup = () => {
                         <span className="label-text text-teal-500">accept terms and conditon</span>
                     </div>
                     <button className="btn btn-success w-full mt-4">sin up</button>
-                    <p className='text-teal-500'>have an account please <Link to={'/login'}><button className="btn btn-link text-teal-500">login</button></Link> </p>
+                    <p className='text-teal-500'>have an account please <Link to={'/login'}><button className="btn btn-link text-white">login</button></Link> </p>
 
                 </form>
                 <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full text-white"><FaGoogle className='mr-4' /> continue withe google</button>

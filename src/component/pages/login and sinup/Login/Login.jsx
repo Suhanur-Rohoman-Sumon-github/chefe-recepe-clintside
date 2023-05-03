@@ -9,7 +9,7 @@ const auth = getAuth(app)
 
 const Login = () => {
     const navigate = useNavigate()
-    const { loginUser,setError } = useContext(AuthContext)
+    const { loginUser,setError,setUser } = useContext(AuthContext)
     const location = useLocation()
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
@@ -85,6 +85,8 @@ const Login = () => {
         const password = form.password.value
         loginUser(email, password)
             .then((userCredential) => {
+                const user = userCredential.user
+                setUser(user)
                 navigate(from, { replace: true })
                 // .then((result) => {
                 //     user=result.user
@@ -110,7 +112,7 @@ const Login = () => {
                         <p className="label-text text-teal-500"><span >show password</span></p>
                     </div>
                     <button className="btn btn-success w-full mt-4 text-white">login</button>
-                    <p className='text-teal-500'>have not an account please text-white <Link to={'/sinup'}><button className="btn btn-link text-teal-500">sinup</button></Link> </p>
+                    <p className='text-teal-500'>have not an account please  <Link to={'/sinup'}><button className="btn btn-link text-white">sinup</button></Link> </p>
 
                 </form>
                 <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> login withe google</button>

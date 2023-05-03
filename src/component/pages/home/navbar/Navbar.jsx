@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Provaider/AuthProvider';
 
 const Navbar = () => {
 
-    const { displayName, user, photoURL, logout } = useContext(AuthContext)
+    const { user,  logout } = useContext(AuthContext)
 
     const handlelogout = () => {
         logout()
@@ -37,7 +37,6 @@ const Navbar = () => {
                                         <li>
                                             <a className="justify-between">
                                                 Profile
-                                                <span className="badge">New</span>
                                             </a>
                                         </li>
                                         <li><a>Settings</a></li>
@@ -46,10 +45,9 @@ const Navbar = () => {
                                 </div>
 
                             </li>
-                            {user && <h1 className='text-4xl text-teal-500'>{displayName}</h1>
-                            }
+                            
                             {
-                                user && <img src={photoURL} className='h-7 w-7 rounded-full ml-4' alt="" />
+                                user && <img src={user?.photoURL} className='h-7 w-7 rounded-full ml-4' alt="" />
                             }
                             {user && <Link to={'/sinup'}><button onClick={handlelogout} className="btn btn-success ml-4 text-white">logout</button></Link>}
                         </ul>
@@ -73,14 +71,11 @@ const Navbar = () => {
                     {user && <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img src={photoURL} />
+                                <img  src={user?.photoURL} title={user?.displayName} />
                             </div>
                         </label>
                         <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                            <li>
-                                    {user && <span className='text-4xl  text-teal-500'>{displayName}</span>
-                                    }
-                            </li>
+                           
                             <li><button className="btn btn-success text-white">Settings</button></li>
                             {user && <Link to={'/'}><button onClick={handlelogout} className="btn btn-success w-full mt-4 text-white">logout</button></Link>}
                         </ul>
@@ -90,7 +85,7 @@ const Navbar = () => {
                     <div className='hidden lg:flex items-center '>
 
 
-                       
+
                     </div>
                 </div>
             </div>

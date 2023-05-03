@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBMul6gjkHeF5r9cJR1YTOvYkbjKIKil_o",
-  authDomain: "chef-resturent-clint-side.firebaseapp.com",
-  projectId: "chef-resturent-clint-side",
-  storageBucket: "chef-resturent-clint-side.appspot.com",
-  messagingSenderId: "54103075568",
-  appId: "1:54103075568:web:d4a84890db904ecb9a3035"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase

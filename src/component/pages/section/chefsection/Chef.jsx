@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import SingleChef from './singlechef/SingleChef';
 
 const Chef = () => {
-
     const [chefs, setChefs] = useState([])
+    const [showAll,setshowAll] = useState(false)
 
     useEffect(() => {
-        fetch('http://localhost:5000/chef')
+        fetch('https://the-chef-resturent-server-side-su44248124.vercel.app/chef')
             .then(res => res.json())
             .then(data => setChefs(data))
             .catch(err => console.error(err))
@@ -20,11 +20,16 @@ const Chef = () => {
             </div>
             <div className='md:grid grid-cols-3 gap-6 w-10/12 mx-auto '>
                 {
-                    chefs.map(chef => <SingleChef
+                    chefs.slice(0, showAll ? 12 : 6).map(chef => <SingleChef
                         key={chef.id}
                         chef={chef}
                     ></SingleChef>)
                 }
+                <div className=''>
+                    {!showAll && (
+                        <button className='btn  btn-success mt-8 text-white' onClick={() => setshowAll(true)}>Show more</button>
+                    )}
+                </div>
             </div>
         </div>
     );

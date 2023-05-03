@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useRouteError } from 'react-router-dom'
 import Navbar from '../../home/navbar/Navbar'
 import errorImg from '../../../../../public/false-2061132__340.webp'
+import Footer from '../../home/Footer/Footer'
 
 const ErrorPage = () => {
   const { error, status } = useRouteError()
@@ -31,6 +32,7 @@ const ErrorPage = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }
