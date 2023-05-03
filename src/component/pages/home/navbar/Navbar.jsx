@@ -29,10 +29,10 @@ const Navbar = () => {
                                 </NavLink>
 
                             </li>
-                            {user && <h1 className='text-4xl text-teal-500'>{displayName}</h1>
+                            {user && <h1 className='text-4xl text-teal-500'></h1>
                             }
                             {
-                                user && <img src={photoURL} className='h-7 w-7 rounded-full ml-4' alt="" />
+                                user && <img src={photoURL} className='h-7 w-7 rounded-full ml-4' alt={displayName} />
                             }
                             {user && <Link to={'/sinup'}><button onClick={handlelogout} className="btn btn-success ml-4 text-white">logout</button></Link>}
                         </ul>

@@ -6,7 +6,7 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../../Provaider/AuthProvider';
 
 const Sinup = () => {
-    const { sinUpUser, setPhotoUrl, setName, error, setError,setUser } = useContext(AuthContext)
+    const { sinUpUser, setPhotoUrl, setName, error, setError, setUser } = useContext(AuthContext)
     const navigate = useNavigate()
     const handleSinup = (event) => {
         event.preventDefault()
@@ -37,6 +37,52 @@ const Sinup = () => {
         setName(name)
         setPhotoUrl(imgUrl)
     }
+    const handleGooglesinin = () => {
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                navigate('/')
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+    }
+
+    const handleGithubLogin = () => {
+        signInWithPopup(auth, githubProvider)
+            .then((result) => {
+                navigate('/')
+                // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+                const credential = GithubAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GithubAuthProvider.credentialFromError(error);
+                // ...
+            });
+    }
     return (
         <div className='bg-gray-800 '>
             <Navbar />
@@ -55,8 +101,8 @@ const Sinup = () => {
                     </div>
                     <button className="btn btn-success w-full mt-4">sin up</button>
                     <p className='text-teal-500'>have an account please <Link to={'/login'}><button className="btn btn-link text-teal-500">login</button></Link> </p>
-                    <button className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> login withe google</button>
-                    <button className="btn btn-outline btn-success mt-4 w-full"><FaGithub className='mr-4' /> login withe github</button>
+                    <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> continue withe google</button>
+                    <button onClick={handleGithubLogin} className="btn btn-outline btn-success mt-4 w-full"><FaGithub className='mr-4' /> constinue withe github</button>
                 </form>
             </div>
             <Footer />

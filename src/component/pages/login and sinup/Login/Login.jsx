@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provaider/AuthProvider';
-import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, getAuth, GithubAuthProvider } from 'firebase/auth';
 import app from '../../../../firebase/firebase.config';
 
 const auth = getAuth(app)
@@ -15,11 +15,13 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
-    const googleProvider = GoogleAuthProvider
+    const googleProvider = new GoogleAuthProvider()
+    const githubProvider = new GithubAuthProvider()
 
     const handleGooglesinin = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
+                navigate('/')
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
@@ -38,6 +40,31 @@ const Login = () => {
                 // ...
             });
     }
+
+    const handleGithubLogin = () => {
+        signInWithPopup(auth, githubProvider)
+            .then((result) => {
+                navigate('/')
+                // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+                const credential = GithubAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GithubAuthProvider.credentialFromError(error);
+                // ...
+            });
+    }
+
 
 
     const handalelogin = (event) => {
@@ -74,7 +101,7 @@ const Login = () => {
 
                 </form>
                 <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> login withe google</button>
-                <button className="btn btn-outline btn-success mt-4 w-full"><FaGithub className='mr-4' /> login withe github</button>
+                <button onClick={handleGithubLogin} className="btn btn-outline btn-success mt-4 w-full"><FaGithub className='mr-4' /> login withe github</button>
             </div>
         </div>
     );
