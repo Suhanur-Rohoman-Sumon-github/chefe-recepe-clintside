@@ -15,13 +15,10 @@ const router = createBrowserRouter([{
     element: <Main />,
 },
 {
-    path: 'news',
-    element: <SingleChief />,
-    children: [{
-        path: ':id',
-        element: <PrivateRout ><Singlechefe />,</PrivateRout>,
-        loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`)
-    }]
+    path: 'news/:id',
+    element: <Singlechefe />,
+    loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`)
+
 },
 {
     path: 'login',

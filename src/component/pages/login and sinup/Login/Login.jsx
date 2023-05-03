@@ -2,13 +2,27 @@ import React, { useContext } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provaider/AuthProvider';
+import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
+import app from '../../../../firebase/firebase.config';
 
+const auth = getAuth(app)
 
 const Login = () => {
     const navigate = useNavigate()
     const { loginUser } = useContext(AuthContext)
     const location = useLocation()
+
+
     const from = location.state?.from?.pathname || '/';
+    const googleProvider = GoogleAuthProvider
+    const handleGooglesinin = () => {
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                const user = result.user
+                console.log(user)
+            })
+            .catch(error => console.error(error))
+    }
 
     const handalelogin = (event) => {
         event.preventDefault()
@@ -17,10 +31,10 @@ const Login = () => {
         const password = form.password.value
         loginUser(email, password)
             .then((userCredential) => {
-                navigate(from,{replace:true})
-               .then(() => {
+                navigate(from, { replace: true })
+                    .then(() => {
 
-                })
+                    })
                     .catch(error => {
                         console.error(error.message)
                     })
@@ -41,9 +55,10 @@ const Login = () => {
                     </div>
                     <button className="btn btn-success w-full mt-4">login</button>
                     <p className='text-teal-500'>have not an account please <Link to={'/sinup'}><button className="btn btn-link text-teal-500">sinup</button></Link> </p>
-                    <button className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> login withe google</button>
-                    <button className="btn btn-outline btn-success mt-4 w-full"><FaGithub className='mr-4' /> login withe github</button>
+
                 </form>
+                <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> login withe google</button>
+                <button className="btn btn-outline btn-success mt-4 w-full"><FaGithub className='mr-4' /> login withe github</button>
             </div>
         </div>
     );

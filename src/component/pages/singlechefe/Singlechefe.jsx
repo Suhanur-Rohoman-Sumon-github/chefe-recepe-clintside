@@ -1,6 +1,9 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import Recipi from '../section/RecipiSection/Recipi';
+import Navbar from '../home/navbar/Navbar';
+import Footer from '../home/Footer/Footer';
+
 
 const Singlechefe = () => {
 
@@ -8,7 +11,8 @@ const Singlechefe = () => {
     const {chefName,imageUrl,description,works} = data
 
     return (
-        <div className=''>
+        <div className='bg-gray-800'>
+            <Navbar />
            <section className='md:flex md:justify-center md:items-center py-28'>
                 <div >
                 <h1 className=' text-teal-500 text-4xl'>{chefName}</h1>
@@ -30,6 +34,7 @@ const Singlechefe = () => {
               }
              </div>
            </section>
+           <Footer />
         </div>
     );
 };

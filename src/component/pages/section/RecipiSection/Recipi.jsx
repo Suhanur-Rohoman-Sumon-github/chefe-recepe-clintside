@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SingleRecipt from './SingleRecipt';
 import Rating from 'react-rating';
-import { FaRegStar, FaStar,FaHeart,FaBookmark,FaThumbsUp } from 'react-icons/fa';
+import { FaRegStar, FaStar, FaHeart, FaBookmark, FaThumbsUp } from 'react-icons/fa';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Recipi = ({ work }) => {
     const { image, chefName, ingrediant, howcook, rating, description, name, imageUrl, likes } = work
-    console.log(work)
+    const [isDisabled, setIsDisabled] = useState(false);
+    const notify = () => {
+        toast("favorit added");
+        setIsDisabled(true)
+    }
+
+
     return (
         <>
             <div className="card w-full shadow-lg  shadow-teal-500 border border-spacing-4 border-teal-600">
@@ -15,7 +23,7 @@ const Recipi = ({ work }) => {
                         <h5 className='text-teal-500 ml-4 text-2xl'>{chefName}</h5>
                     </div>
                     <div>
-                        <FaBookmark className='text-teal-500'/>
+                        <FaBookmark className='text-teal-500' />
                     </div>
                 </div>
                 <figure><img src={image} className='w-full h-64 p-4 rounded-lg' alt="Shoes" /></figure>
@@ -34,21 +42,24 @@ const Recipi = ({ work }) => {
                     <p className='pt-4 font-bold text-2xl text-teal-500'>How cook : </p>
                     <p className='text-teal-500 '>{howcook}</p>
                     <div className="card-actions flex justify-between items-center">
-                       <div>
-                       <p className='font-bold text-teal-500'>
-                            <Rating className='ml-2'
-                                placeholderRating={rating}
-                                readonly
-                                emptySymbol={<FaRegStar />}
-                                placeholderSymbol={<FaStar className='text-warning' />}
-                                fullSymbol={<FaStar />}
-                            />
-                        </p>
-                       </div>
-                       <div className='flex items-center'>
-                        <FaHeart className='font-bold text-white' />
-                        <p className='flex items-center text-teal-500 ml-4'><FaThumbsUp className='mr-1' />{likes}</p>
-                       </div>
+                        <div>
+                            <p className='font-bold text-teal-500'>
+                                <Rating className='ml-2'
+                                    placeholderRating={rating}
+                                    readonly
+                                    emptySymbol={<FaRegStar />}
+                                    placeholderSymbol={<FaStar className='text-warning' />}
+                                    fullSymbol={<FaStar />}
+                                />
+                            </p>
+                        </div>
+                        <div className='flex items-center'>
+                            <button disabled={isDisabled}
+                                onClick={notify}>
+                                <FaHeart className='font-bold ' /></button>
+                            <ToastContainer />
+                            <p className='flex items-center text-teal-500 ml-4'><FaThumbsUp className='mr-1' />{likes}</p>
+                        </div>
                     </div>
                 </div>
             </div>

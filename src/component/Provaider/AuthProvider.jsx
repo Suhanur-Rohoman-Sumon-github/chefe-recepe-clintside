@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword,  signOut } from "firebase/auth";
 import app from '../../firebase/firebase.config';
 
 
@@ -13,29 +13,32 @@ const AuthProvider = ({ children }) => {
     const [photoURL, setPhotoUrl] = useState('')
     const [error, setError] = useState('')
     const [user, setUser] = useState(null)
+   
 
-    const logout = () =>{
-     return   signOut(auth)
+    
+
+    const logout = () => {
+        return signOut(auth)
     }
 
-    useEffect(()=>{
-   const unsubscribe = onAuthStateChanged(auth,loggedUser => {
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, loggedUser => {
             setUser(loggedUser)
         })
 
-        return ()=>{
+        return () => {
             unsubscribe()
         }
-    },[])
+    }, [])
 
     const sinUpUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password)
-            
+        return createUserWithEmailAndPassword(auth, email, password)
+
     }
 
     const loginUser = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password)
-            
+        return signInWithEmailAndPassword(auth, email, password)
+
     }
 
 
