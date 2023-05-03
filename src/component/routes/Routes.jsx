@@ -9,10 +9,12 @@ import Blog from '../pages/Blog/Blog';
 import Loginlayout from '../pages/layouts/loginlayouts/Loginlayout';
 import BlogLayout from '../pages/layouts/bloglayout/BlogLayout';
 import PrivateRout from './PrivetRout/PrivateRout';
+import ErrorPage from '../pages/login and sinup/Login/error';
 
 const router = createBrowserRouter([{
     path: '/',
     element: <Main />,
+    errorElement: <ErrorPage />,
 },
 {
     path: 'news/:id',

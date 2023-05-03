@@ -9,7 +9,16 @@ const Recipi = ({ work }) => {
     const { image, chefName, ingrediant, howcook, rating, description, name, imageUrl, likes } = work
     const [isDisabled, setIsDisabled] = useState(false);
     const notify = () => {
-        toast("favorit added");
+        toast.success(' favorit added', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
         setIsDisabled(true)
     }
 
@@ -56,8 +65,19 @@ const Recipi = ({ work }) => {
                         <div className='flex items-center'>
                             <button disabled={isDisabled}
                                 onClick={notify}>
-                                <FaHeart className='font-bold ' /></button>
-                            <ToastContainer />
+                                <FaHeart className='font-bold text-white' /></button>
+                            <ToastContainer
+                                position="top-center"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                theme="dark"
+                            />
                             <p className='flex items-center text-teal-500 ml-4'><FaThumbsUp className='mr-1' />{likes}</p>
                         </div>
                     </div>
