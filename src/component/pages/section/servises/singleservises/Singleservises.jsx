@@ -9,8 +9,8 @@ const Singleservises = ({servis}) => {
                 <figure><img src={image} className='w-full h-64' alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title font-bold text-teal-500  text-3xl">{name}</h2>
-                    <p className='font-bold text-teal-500 text-lg'>{description}</p>
-                    
+                    <p className='font-bold  text-lg text-white'>{description}</p>
+                    <button className="btn btn-outline btn-success">contact us</button>
                 </div>
             </div>
         </>

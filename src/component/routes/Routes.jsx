@@ -18,7 +18,7 @@ const router = createBrowserRouter([{
 },
 {
     path: 'news/:id',
-    element: <Singlechefe />,
+    element: <PrivateRout ><Singlechefe /></PrivateRout>,
     loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`)
 
 },

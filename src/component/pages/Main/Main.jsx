@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../home/navbar/Navbar';
 import Footer from '../home/Footer/Footer';
-import bg from '../../../../public/photo-1600891964599-f61ba0e24092.jfif'
+import bg from '../../../../public/istockphoto-1081422898-612x612.jpg'
 import Home from '../home/home/Home';
 import WhoWeAre from '../section/who-we-are-section/WhoWeAre';
 import Chef from '../section/chefsection/Chef';
@@ -10,34 +10,20 @@ import Servises from '../section/servises/Servises';
 const Main = () => {
     return (
         <div >
-            <section className='pb-40 ' style={{ position: "relative" }} >
-                <div className='blur-sm' style={{
-                    backgroundImage: `url(${bg})`,
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    zIndex: -1,
-                }} />
-                <div style={{
-                    position: "relative",
-                    zIndex: 1,
-                }}>
+            <div className="hero min-h-screen" style={{ backgroundImage: `url(${bg})` }}>
+                <div className="hero-overlay bg-opacity-60">
                     <Navbar />
                     <Home />
-
                 </div>
-            </section>
-            <section className='mt-6 py-52 bg-gray-950 '>
+              
+            </div>
+            <section className='  bg-gray-950 '>
                 <WhoWeAre />
             </section>
-            <section className='mt-1  bg-gray-950 '>
+            <section className=' bg-gray-800 '>
                 <Chef />
             </section>
-            <section className='mt-1  bg-gray-950 '>
+            <section className='  bg-gray-950 '>
                 <Servises />
             </section>
             <section>

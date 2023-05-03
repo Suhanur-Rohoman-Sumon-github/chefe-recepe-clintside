@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provaider/AuthProvider';
@@ -9,11 +9,21 @@ const auth = getAuth(app)
 
 const Login = () => {
     const navigate = useNavigate()
-    const { loginUser } = useContext(AuthContext)
+    const { loginUser,setError } = useContext(AuthContext)
     const location = useLocation()
-
+    const [showPassword, setShowPassword] = useState(false);
+    const [password, setPassword] = useState('');
 
     const from = location.state?.from?.pathname || '/';
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+      };
+
+      const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+      };
+    
 
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
@@ -68,6 +78,7 @@ const Login = () => {
 
 
     const handalelogin = (event) => {
+
         event.preventDefault()
         const form = event.target
         const email = form.email.value
@@ -75,14 +86,16 @@ const Login = () => {
         loginUser(email, password)
             .then((userCredential) => {
                 navigate(from, { replace: true })
-                    .then(() => {
+                // .then((result) => {
+                //     user=result.user
+                // })
 
-                    })
-                    .catch(error => {
-                        console.error(error.message)
-                    })
 
-            });
+            })
+            .catch(error => {
+                console.error(error.message)
+                setError(error.message)
+            })
     }
 
     return (
@@ -91,13 +104,13 @@ const Login = () => {
                 <h1 className='text-3xl text-teal-500 my-4 text-center'>please login</h1>
                 <form onSubmit={handalelogin} className='mx-auto'>
                     <input type="text" placeholder="Type here" required name='email' className="input  input-bordered input-accent w-full max-w-xs" /><br />
-                    <input type="password" required name='password' placeholder="Type here" className="input mt-6 input-bordered input-accent w-full max-w-xs" />
+                    <input type={showPassword ? 'text' : 'password'} onChange={handlePasswordChange} required name='password' placeholder="Type here" className="input mt-6 input-bordered input-accent w-full max-w-xs" />
                     <div className='flex items-center mt-4'>
-                        <input type="checkbox" required name='confirm password' className="checkbox checkbox-success mr-4" />
-                        <span className="label-text text-teal-500">accept terms and conditon</span>
+                        <input onClick={toggleShowPassword} type="checkbox"  name='confirm password' className="checkbox checkbox-success mr-4" />
+                        <p className="label-text text-teal-500"><span >show password</span></p>
                     </div>
-                    <button className="btn btn-success w-full mt-4">login</button>
-                    <p className='text-teal-500'>have not an account please <Link to={'/sinup'}><button className="btn btn-link text-teal-500">sinup</button></Link> </p>
+                    <button className="btn btn-success w-full mt-4 text-white">login</button>
+                    <p className='text-teal-500'>have not an account please text-white <Link to={'/sinup'}><button className="btn btn-link text-teal-500">sinup</button></Link> </p>
 
                 </form>
                 <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> login withe google</button>

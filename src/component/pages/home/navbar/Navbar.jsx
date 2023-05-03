@@ -22,17 +22,34 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-compact dropdown-content text-2xl text-teal-400 mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><NavLink className={({ isActive }) => isActive ? 'text-white' : 'nothing'}  to={'/'}>Home</NavLink></li>
+                            <li><NavLink className={({ isActive }) => isActive ? 'text-white' : 'nothing'} to={'/'}>Home</NavLink></li>
                             <li tabIndex={0}>
-                                <NavLink  className={({ isActive }) => isActive ? 'text-white' : 'nothing'} to={'/blogs'} >
+                                <NavLink className={({ isActive }) => isActive ? 'text-white' : 'nothing'} to={'/blogs'} >
                                     Blog
                                 </NavLink>
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                        </div>
+                                    </label>
+                                    <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                                        <li>
+                                            <a className="justify-between">
+                                                Profile
+                                                <span className="badge">New</span>
+                                            </a>
+                                        </li>
+                                        <li><a>Settings</a></li>
+                                        <li><a>Logout</a></li>
+                                    </ul>
+                                </div>
 
                             </li>
-                            {user && <h1 className='text-4xl text-teal-500'></h1>
+                            {user && <h1 className='text-4xl text-teal-500'>{displayName}</h1>
                             }
                             {
-                                user && <img src={photoURL} className='h-7 w-7 rounded-full ml-4' alt={displayName} />
+                                user && <img src={photoURL} className='h-7 w-7 rounded-full ml-4' alt="" />
                             }
                             {user && <Link to={'/sinup'}><button onClick={handlelogout} className="btn btn-success ml-4 text-white">logout</button></Link>}
                         </ul>
@@ -50,16 +67,30 @@ const Navbar = () => {
 
                         </li>
                     </ul>
+
                 </div>
                 <div className="navbar-end">
+                    {user && <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img src={photoURL} />
+                            </div>
+                        </label>
+                        <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                            <li>
+                                    {user && <span className='text-4xl  text-teal-500'>{displayName}</span>
+                                    }
+                            </li>
+                            <li><button className="btn btn-success text-white">Settings</button></li>
+                            {user && <Link to={'/'}><button onClick={handlelogout} className="btn btn-success w-full mt-4 text-white">logout</button></Link>}
+                        </ul>
+                    </div>}
+
                     {!user && <Link to={'/login'}><button className="btn btn-success ml-4 text-white">login</button></Link>}
                     <div className='hidden lg:flex items-center '>
-                        {user && <span className='text-4xl  text-teal-500'>{displayName}</span>
-                        }
-                        {
-                            user && <img src={photoURL} className='h-7 w-7 rounded-full ml-4' alt="" />
-                        }
-                        {user && <Link to={'/sinup'}><button onClick={handlelogout} className="btn btn-success ml-4 text-white">logout</button></Link>}
+
+
+                       
                     </div>
                 </div>
             </div>

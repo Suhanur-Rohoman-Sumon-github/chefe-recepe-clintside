@@ -13,17 +13,20 @@ const AuthProvider = ({ children }) => {
     const [photoURL, setPhotoUrl] = useState('')
     const [error, setError] = useState('')
     const [user, setUser] = useState(null)
+    const [loading,SetLoding] = useState(true)
    
 
     
 
     const logout = () => {
+        SetLoding(true)
         return signOut(auth)
     }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
             setUser(loggedUser)
+            SetLoding(false)
         })
 
         return () => {
@@ -32,11 +35,13 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     const sinUpUser = (email, password) => {
+        SetLoding(true)
         return createUserWithEmailAndPassword(auth, email, password)
 
     }
 
     const loginUser = (email, password) => {
+        SetLoding(true)
         return signInWithEmailAndPassword(auth, email, password)
 
     }
@@ -53,7 +58,9 @@ const AuthProvider = ({ children }) => {
         loginUser,
         error,
         logout,
-        setUser
+        setUser,
+        setError,
+        loading
 
     }
 

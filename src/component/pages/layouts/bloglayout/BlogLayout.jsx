@@ -5,7 +5,7 @@ import Footer from '../../home/Footer/Footer';
 
 const BlogLayout = () => {
     return (
-        <div className='bg-gray-800'>
+        <div className='bg-gray-950'>
             <Navbar />,
             <Outlet />,
             <Footer />
