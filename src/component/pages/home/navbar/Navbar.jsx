@@ -24,7 +24,7 @@ const Navbar = () => {
                         <ul tabIndex={0} className="menu menu-compact dropdown-content text-2xl text-teal-400 mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><NavLink className={({ isActive }) => isActive ? 'text-white' : 'nothing'}  to={'/'}>Home</NavLink></li>
                             <li tabIndex={0}>
-                                <NavLink  className={({ isActive }) => isActive ? 'text-white' : 'nothing'} to={'/blogs'} className="justify-between">
+                                <NavLink  className={({ isActive }) => isActive ? 'text-white' : 'nothing'} to={'/blogs'} >
                                     Blog
                                 </NavLink>
 
@@ -53,7 +53,6 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {!user && <Link to={'/login'}><button className="btn btn-success ml-4 text-white">login</button></Link>}
-                    {!user && <Link to={'/sinup'}><button className="btn btn-success ml-4 text-white">sinup</button></Link>}
                     <div className='hidden lg:flex items-center '>
                         {user && <span className='text-4xl  text-teal-500'>{displayName}</span>
                         }
