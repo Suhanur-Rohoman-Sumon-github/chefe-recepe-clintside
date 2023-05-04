@@ -11,7 +11,6 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
     const [displayName, setName] = useState('')
     const [photoURL, setPhotoUrl] = useState('')
-    const [error, setError] = useState('')
     const [user, setUser] = useState({})
     const [loading,setLoding] = useState(true)
    
@@ -49,14 +48,10 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         sinUpUser,
-        setName,
-        setPhotoUrl,
         user,
         loginUser,
-        error,
         logout,
         setUser,
-        setError,
         loading
 
     }

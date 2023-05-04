@@ -9,21 +9,22 @@ const auth = getAuth(app)
 
 const Login = () => {
     const navigate = useNavigate()
-    const { loginUser,setError,error} = useContext(AuthContext)
+    const { loginUser } = useContext(AuthContext)
     const location = useLocation()
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState('')
 
     const from = location.state?.from?.pathname || '/';
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
-      };
+    };
 
-      const toggleShowPassword = () => {
+    const toggleShowPassword = () => {
         setShowPassword(!showPassword);
-      };
-    
+    };
+
 
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
@@ -53,11 +54,12 @@ const Login = () => {
 
     const handleGithubLogin = () => {
         signInWithPopup(auth, githubProvider)
+        navigate('/')
             .then((result) => {
-                navigate('/')
+
                 // This gives you a GitHub Access Token. You can use it to access the GitHub API.
                 const credential = GithubAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
+
 
                 // The signed-in user info.
                 const user = result.user;
@@ -86,11 +88,11 @@ const Login = () => {
         loginUser(email, password)
             .then((userCredential) => {
                 navigate(from, { replace: true })
-                setError('')
+                setErrors('')
             })
             .catch(error => {
                 console.error(error.message)
-                setError(error.message)
+                setErrors(error.message)
             })
     }
 
@@ -101,9 +103,9 @@ const Login = () => {
                 <form onSubmit={handalelogin} className='mx-auto'>
                     <input type="text" placeholder="Type here" required name='email' className="input  input-bordered input-accent w-full max-w-xs" /><br />
                     <input type={showPassword ? 'text' : 'password'} onChange={handlePasswordChange} required name='password' placeholder="Type here" className="input mt-6 input-bordered input-accent w-full max-w-xs" />
-                    <p className='text-red-500 '>{error}</p>
+                    {errors && <p className='text-red-500 '>{errors}</p>}
                     <div className='flex items-center mt-4'>
-                        <input onClick={toggleShowPassword} type="checkbox"  name='confirm password' className="checkbox checkbox-success mr-4" />
+                        <input onClick={toggleShowPassword} type="checkbox" name='confirm password' className="checkbox checkbox-success mr-4" />
                         <p className="label-text text-teal-500"><span >show password</span></p>
                     </div>
                     <button className="btn btn-success w-full mt-4 text-white">login</button>

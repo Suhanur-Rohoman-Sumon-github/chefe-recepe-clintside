@@ -10,8 +10,9 @@ import app from '../../../../firebase/firebase.config';
 const auth = getAuth(app)
 
 const Sinup = () => {
-    const { sinUpUser, error, setError } = useContext(AuthContext)
+    const { sinUpUser, } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [error, setError] = useState('')
 
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
@@ -54,6 +55,7 @@ const Sinup = () => {
                 }).then(() => {
                     navigate('/')
                     setError('')
+                    from.reset()
                 }).catch((error) => {
                     console.error(error.message)
                     const errorMessage = error.message;
@@ -120,7 +122,7 @@ const Sinup = () => {
                     <input type="email" placeholder="your email @ .com" required name='email' className="input  mt-6  input-bordered input-accent w-full max-w-xs" />
                     <input type={showPassword ? 'text' : 'password'} onChange={handlePasswordChange} placeholder="your password" required name='password' className="input mt-6 input-bordered input-accent w-full max-w-xs" />
                     <input type={showPassword ? 'text' : 'password'} onChange={handlePasswordChange} placeholder="confirm your password" required name='confirmPassword' className="input mt-6 input-bordered input-accent w-full max-w-xs" />
-                    <p className='text-red-500'>{error}</p>
+                    {error &&<p className='text-red-500'>{error}</p>}
                     <div className='flex items-center mt-4'>
                         <input type="checkbox" onClick={toggleShowPassword} className="checkbox checkbox-success mr-4" />
                         <span className="label-text text-teal-500">show password</span>

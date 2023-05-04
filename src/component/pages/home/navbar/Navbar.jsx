@@ -27,29 +27,7 @@ const Navbar = () => {
                                 <NavLink className={({ isActive }) => isActive ? 'text-white' : 'nothing'} to={'/blogs'} >
                                     Blog
                                 </NavLink>
-                                <div className="dropdown dropdown-end">
-                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                        <div className="w-10 rounded-full">
-                                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                        </div>
-                                    </label>
-                                    <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                                        <li>
-                                            <a className="justify-between">
-                                                Profile
-                                            </a>
-                                        </li>
-                                        <li><a>Settings</a></li>
-                                        <li><a>Logout</a></li>
-                                    </ul>
-                                </div>
-
                             </li>
-                            
-                            {
-                                user && <img src={user?.photoURL} className='h-7 w-7 rounded-full ml-4' alt="" />
-                            }
-                            {user && <Link to={'/sinup'}><button onClick={handlelogout} className="btn btn-success ml-4 text-white">logout</button></Link>}
                         </ul>
                     </div>
                     <Link className='text-teal-400 text-2xl font-bold' to={'/'}>Hire a Chef Today</Link>
