@@ -3,4 +3,4 @@
 ### then a vew recipt button in every cheps card it will be redirect to its main page 
 ### then a like button to add favorit
 
-## live side link : https://chef-resturent-clint-side.web.app/
+## live side link : https://chief-recipi-clint.web.app/
