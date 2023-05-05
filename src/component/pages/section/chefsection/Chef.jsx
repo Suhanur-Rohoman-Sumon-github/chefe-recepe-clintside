@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SingleChef from './singlechef/SingleChef';
+import { FaArrowRight } from 'react-icons/fa';
 
 const Chef = () => {
     const [chefs, setChefs] = useState([])
@@ -27,7 +28,7 @@ const Chef = () => {
                 }
                 <div className=''>
                     {!showAll && (
-                        <button className='btn  btn-success mt-8 text-white' onClick={() => setshowAll(true)}>Show more</button>
+                        <button className='btn  btn-success mt-8 text-white' onClick={() => setshowAll(true)}>Show more <FaArrowRight className='ml-2' /></button>
                     )}
                 </div>
             </div>

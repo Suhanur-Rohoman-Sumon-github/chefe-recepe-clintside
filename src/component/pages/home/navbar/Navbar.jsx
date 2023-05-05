@@ -52,18 +52,14 @@ const Navbar = () => {
                                 <img  src={user?.photoURL} title={user?.displayName} />
                             </div>
                         </label>
-                        <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                           
-                            <li><button className="btn btn-success text-white">Settings</button></li>
+                        <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">   
+                            <li><Link to={'/profile'}><button className="btn btn-warning text-white w-full">veiw profile</button></Link> </li>
                             {user && <Link to={'/'}><button onClick={handlelogout} className="btn btn-success w-full mt-4 text-white">logout</button></Link>}
                         </ul>
                     </div>}
 
-                    {!user && <Link to={'/login'}><button className="btn btn-success ml-4 text-white">login</button></Link>}
+                    {!user && <Link to={'/login'}><button className="btn btn-success ml-4 text-white">login </button></Link>}
                     <div className='hidden lg:flex items-center '>
-
-
-
                     </div>
                 </div>
             </div>

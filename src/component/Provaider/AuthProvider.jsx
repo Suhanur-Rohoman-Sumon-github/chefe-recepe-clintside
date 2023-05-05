@@ -9,8 +9,8 @@ export const AuthContext = createContext(null)
 
 const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
-    const [displayName, setName] = useState('')
-    const [photoURL, setPhotoUrl] = useState('')
+    
+    
     const [user, setUser] = useState({})
     const [loading,setLoding] = useState(true)
    
@@ -52,7 +52,8 @@ const AuthProvider = ({ children }) => {
         loginUser,
         logout,
         setUser,
-        loading
+        loading,
+        auth
 
     }
 

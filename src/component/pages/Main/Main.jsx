@@ -10,7 +10,7 @@ import Servises from '../section/servises/Servises';
 const Main = () => {
     return (
         <div >
-            <div className="hero min-h-screen" style={{ backgroundImage: `url(${bg})` }}>
+            <div style={{ backgroundImage: `url(${bg})` }}  className="hero min-h-screen " >
                 <div className="hero-overlay bg-opacity-30">
                     <Navbar />
                     <Home />

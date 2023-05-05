@@ -1,5 +1,6 @@
 import html2canvas from "html2canvas";
 import jspdf from "jspdf";
+import { FaDownload } from "react-icons/fa";
 
 export default function Html() {
   return (
@@ -16,7 +17,7 @@ export default function Html() {
         <p className="ml-4 my-2 text-teal-500  font-bold">Ans: A custom hook is a function that uses one or more built-in React hooks to encapsulate reusable logic that can be shared across multiple components. Custom hooks allow you to abstract away complex logic into reusable pieces of code that can be easily shared and reused in different components. You would create a custom hook when you find yourself repeating the same code across multiple components or when you want to create a reusable piece of logic that can be easily shared between components.</p>
 
       </div>
-      <button className="btn btn-success"
+      <button className="btn btn-success text-white mt-4"
         onClick={() => {
           const check = document.getElementById("jspdf");
           html2canvas(check, {}).then((canvas) => {
@@ -29,7 +30,7 @@ export default function Html() {
           });
         }}
       >
-        Download
+        Download pdf <FaDownload className="ml-2" />
       </button>
     </div>
   );

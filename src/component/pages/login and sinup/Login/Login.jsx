@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { FaArrowRight, FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provaider/AuthProvider';
 import { GoogleAuthProvider, signInWithPopup, getAuth, GithubAuthProvider } from 'firebase/auth';
@@ -108,12 +108,12 @@ const Login = () => {
                         <input onClick={toggleShowPassword} type="checkbox" name='confirm password' className="checkbox checkbox-success mr-4" />
                         <p className="label-text text-teal-500"><span >show password</span></p>
                     </div>
-                    <button className="btn btn-success w-full mt-4 text-white">login</button>
+                    <button className="btn btn-success w-full mt-4 text-white">login <FaArrowRight className='ml-2' /></button>
                     <p className='text-teal-500'>have not an account please  <Link to={'/sinup'}><button className="btn btn-link text-white">sinup</button></Link> </p>
 
                 </form>
-                <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> login withe google</button>
-                <button onClick={handleGithubLogin} className="btn btn-outline btn-success mt-4 w-full"><FaGithub className='mr-4' /> login withe github</button>
+                <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full"><FaGoogle className='mr-4' /> login withe google <FaArrowRight className='ml-2' /></button>
+                <button onClick={handleGithubLogin} className="btn btn-outline btn-success mt-4 w-full"><FaGithub className='mr-4' /> login withe github <FaArrowRight className='ml-2' /></button>
             </div>
         </div>
     );

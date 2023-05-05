@@ -3,6 +3,7 @@ import { useLoaderData, useParams } from 'react-router-dom';
 import Recipi from '../section/RecipiSection/Recipi';
 import Navbar from '../home/navbar/Navbar';
 import Footer from '../home/Footer/Footer';
+import { FaArrowRight } from 'react-icons/fa';
 
 
 const Singlechefe = () => {
@@ -17,7 +18,7 @@ const Singlechefe = () => {
                 <div className='w-[70%]'>
                 <h1 className=' text-teal-500 text-4xl'>{chefName}</h1>
                 <p className='text-white text-2xl mt-4'>{description}</p>
-                <button className="btn btn-outline btn-success mt-4">constact </button>
+                <button className="btn btn-outline btn-success mt-4">constact <FaArrowRight className='ml-2' /></button>
                 </div>
                 <div className='w-[30%] ml-4'>
                     <img src={imageUrl} className='w-full h-64' alt="" />

@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import Rating from 'react-rating';
-import { FaBookmark, FaShareAlt, FaEye, FaStar, FaRegStar } from "react-icons/fa";
+import { FaBookmark, FaShareAlt, FaEye, FaStar, FaRegStar, FaArrowRight } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const SingleChef = ({ chef }) => {
@@ -34,7 +34,7 @@ const SingleChef = ({ chef }) => {
 
                             </div>
                         </div>
-                        <Link to={`/news/${id}`}> <button className="btn btn-outline btn-success">vew details </button></Link>
+                        <Link to={`/news/${id}`}> <button className="btn btn-outline btn-success">vew details <FaArrowRight className='ml-2' /></button></Link>
                     </div>
                 </div>
             </div>

@@ -2,18 +2,18 @@ import React, { useContext, useState } from 'react';
 import Navbar from '../../home/navbar/Navbar';
 import Footer from '../../home/Footer/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { FaArrowRight, FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../../Provaider/AuthProvider';
 import { signInWithPopup, getAuth, GoogleAuthProvider, GithubAuthProvider, updateProfile } from 'firebase/auth';
 import app from '../../../../firebase/firebase.config';
+import { ToastContainer, toast } from 'react-toastify';
 
 const auth = getAuth(app)
 
 const Sinup = () => {
-    const { sinUpUser, } = useContext(AuthContext)
+    const { sinUpUser} = useContext(AuthContext)
     const navigate = useNavigate()
     const [error, setError] = useState('')
-
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
     const [showPassword, setShowPassword] = useState(false);
@@ -33,7 +33,7 @@ const Sinup = () => {
         const password = form.password.value
         const confirmPassword = form.confirmPassword.value
         if (password !== confirmPassword) {
-            setError("Invalid Confirm Password");
+            toast.success('Successfully toasted!')
             return;
         }
         if (password < 8) {
@@ -131,12 +131,12 @@ const Sinup = () => {
                         <input type="checkbox" required className="checkbox checkbox-success mr-4" />
                         <span className="label-text text-teal-500">accept terms and conditon</span>
                     </div>
-                    <button className="btn btn-success w-full mt-4">sin up</button>
+                    <button className="btn btn-success w-full mt-4">sin up <FaArrowRight className='ml-2' /></button>
                     <p className='text-teal-500'>have an account please <Link to={'/login'}><button className="btn btn-link text-white">login</button></Link> </p>
 
                 </form>
-                <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full text-white"><FaGoogle className='mr-4' /> continue withe google</button>
-                <button onClick={handleGithubLogin} className="btn btn-outline btn-success mt-4 w-full text-white"><FaGithub className='mr-4' /> constinue withe github</button>
+                <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full text-white"><FaGoogle className='mr-4' /> continue withe google <FaArrowRight className='ml-2' /></button>
+                <button onClick={handleGithubLogin} className="btn btn-outline btn-success mt-4 w-full text-white"><FaGithub className='mr-4' /> constinue withe github <FaArrowRight className='ml-2' /></button>
             </div>
             <Footer />
         </div>

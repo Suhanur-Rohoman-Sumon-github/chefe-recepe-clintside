@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaArrowRight } from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -32,7 +33,7 @@ const Footer = () => {
                         </label>
                         <div className="relative">
                             <input type="text" placeholder="username@site.com" className="input input-bordered w-full pr-16" />
-                            <button className="btn btn-success absolute top-0 right-0 rounded-l-none text-white">Subscribe</button>
+                            <button className="btn btn-success absolute top-0 right-0 rounded-l-none text-white">Subscribe <FaArrowRight className='ml-2' /> </button>
                         </div>
                     </div>
                 </div>
