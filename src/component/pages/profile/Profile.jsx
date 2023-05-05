@@ -18,12 +18,6 @@ const Profile = () => {
                     <h1 className='text-white font-bold text-2xl'>{user?.displayName}</h1>
                     <ul className="menu  px-1 text-2xl font-bold text-teal-400 ">
                         <li><NavLink className={({ isActive }) => isActive ? 'text-white' : 'nothing'} to={'/profile'}>myprofile</NavLink></li> <br />
-                        <li tabIndex={0}>
-                            <NavLink className={({ isActive }) => isActive ? 'text-white' : 'nothing'} to={''}>
-                                Blog
-                            </NavLink>
-
-                        </li>
                     </ul>
                 </div>
                 <div className='border border-spacing-4 border-teal-500 ml-9 py-20 bg-gray-700 px-20'>

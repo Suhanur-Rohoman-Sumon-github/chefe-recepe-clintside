@@ -7,6 +7,7 @@ import { AuthContext } from '../../../Provaider/AuthProvider';
 import { signInWithPopup, getAuth, GoogleAuthProvider, GithubAuthProvider, updateProfile } from 'firebase/auth';
 import app from '../../../../firebase/firebase.config';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const auth = getAuth(app)
 
@@ -32,18 +33,18 @@ const Sinup = () => {
         const form = event.target
         const password = form.password.value
         const confirmPassword = form.confirmPassword.value
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
         if (password !== confirmPassword) {
-            toast.success('Successfully toasted!')
+            toast.error('Passwords do not match!');
             return;
-        }
-        if (password < 8) {
-            setError("password will be  minimum 8 character");
+        }else if (password.length < 6) {
+            toast.error('Password must be at least 6 characters long!');
             return;
-        }
-        if (!/(?=.*[^\a-zA-Z])/.test(password)) {
-            setError("password must me have on spacial character");
+          }
+          else if (!regex.test(password)) {
+            toast.error('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character!');
             return;
-        }
+          }
 
         const name = form.name.value
         const imgUrl = form.imgUrl.value
@@ -135,6 +136,7 @@ const Sinup = () => {
                     <p className='text-teal-500'>have an account please <Link to={'/login'}><button className="btn btn-link text-white">login</button></Link> </p>
 
                 </form>
+                <ToastContainer />
                 <button onClick={handleGooglesinin} className="btn btn-outline btn-success w-full text-white"><FaGoogle className='mr-4' /> continue withe google <FaArrowRight className='ml-2' /></button>
                 <button onClick={handleGithubLogin} className="btn btn-outline btn-success mt-4 w-full text-white"><FaGithub className='mr-4' /> constinue withe github <FaArrowRight className='ml-2' /></button>
             </div>
